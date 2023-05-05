@@ -7,11 +7,11 @@
         <table id="report_list">
             <tbody>
                 <tr>
-                    <th>${table_date}</th>
-                    <th>火</th>
-                    <th>水</th>
-                    <th>木</th>
-                    <th>金</th>
+                    <th>${table_date0}</th>
+                    <th>${table_date1}</th>
+                    <th>${table_date2}</th>
+                    <th>${table_date3}</th>
+                    <th>${table_date4}</th>
                 </tr>
                 <%-- <c:forEach var="report" items="${reports}" varStatus="status">
                     <tr class="row${status.count % 2}">

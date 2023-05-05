@@ -3,7 +3,6 @@ package controllers.toppage;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,15 +29,23 @@ public class TopPageIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Date date=new Date();
+        int i=5;
+        String[] table_dates = new String[i];
 
-        Calendar calendar=Calendar.getInstance();
-        calendar.setTime(date);
+        //日付の取得
+        Calendar cal=Calendar.getInstance();
 
+        //日付の表示形式の設定
         SimpleDateFormat sdf=new SimpleDateFormat("MM/dd (E)");
-        String table_date=sdf.format(calendar.getTime());
 
-        request.setAttribute("table_date", table_date);
+        //本日から5日分の日付を取得
+        for(i=0;i<5;i++){
+            table_dates[i]=sdf.format(cal.getTime());
+            request.setAttribute("table_date"+i, table_dates[i]);
+            cal.add(Calendar.DATE, 1);
+        }
+
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
         rd.forward(request, response);
