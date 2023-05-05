@@ -1,6 +1,9 @@
 package controllers.toppage;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +30,16 @@ public class TopPageIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Date date=new Date();
+
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(date);
+
+        SimpleDateFormat sdf=new SimpleDateFormat("MM/dd (E)");
+        String table_date=sdf.format(calendar.getTime());
+
+        request.setAttribute("table_date", table_date);
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
         rd.forward(request, response);
     }
