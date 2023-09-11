@@ -11,13 +11,19 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>予約管理システム</h1>
+                <h2>予約管理システム</h2>
             </div>
             <div id="content">
                 ${param.content}
             </div>
             <div id="footer">
+            <br>
+            <br>
+            <a href="<c:url value='/' />">トップページ</a>
+            <br>
+            <br>
                 by Tatsuya Sasaki.
+
             </div>
         </div>
     </body>

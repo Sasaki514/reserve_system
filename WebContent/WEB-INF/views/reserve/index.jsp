@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="../layout/app.jsp">
+    <c:param name="content">
+        <h2>予約管理システムへようこそ</h2>
+        <h3>【予約状況】</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td class="monthCell"></td>
+                        <th class="dateCellNonborder" colspan="${firstColspan}" style="width:${firstPx}px;">${yearList[0]}年${monthList[0]}月</th>
+                        <c:if test="${secondColspan > 0}">
+                        <th class="dateCellNonborder" colspan="${secondColspan}" style="width:${secondPx}px;">${yearList[1]}年${monthList[1]}月</th>
+                        </c:if>
+                </tr>
+                <tr>
+                    <td class="timeCellNonborder"></td>
+                    <c:forEach var="date" varStatus="d" items="${dateList}">
+                        <th class="dateCell">${date}<br> ${dowList[d.index]}
+                        </th>
+                    </c:forEach>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <table class="body">
+                            <tbody>
+                                <c:forEach var="time" items="${timeList}">
+                                    <tr>
+                                        <th class="timeCell">${time}</th>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </th>
+                    <c:forEach var="date" varStatus="d" items="${dateList}">
+                        <th>
+                            <table class="body">
+                                <tbody>
+                                    <c:forEach var="time" items="${timeList}">
+                                        <tr>
+                                            <td class="centered">
+                                            <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">空き</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </th>
+                    </c:forEach>
+                </tr>
+            </tbody>
+        </table>
+
+    </c:param>
+
+</c:import>

@@ -1,14 +1,16 @@
 @CHARSET "UTF-8";
 
 body {
-    color: #333333;
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    /* color: #333333; */
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
 }
 
 #header {
     width: 100%;
     height: 70px;
-    background-color: #333333;
+    background-color: #99CCFF;
+    padding: 5px
 }
 
 #content {
@@ -42,23 +44,97 @@ a {
     color: #24738e;
 }
 
-table, tr, th, td {
+table {
+    border: 1px solid #cccccc;
+}
+
+.border {
     border: 1px solid #cccccc;
 }
 
 table {
-    width: 100%;
+    width: 700px;
     table-layout: fixed;
 }
 
+table.reservation {
+    width: 500px;
+}
+
+.reservationHeader {
+    width: 100px;
+    background-color: dcdcdc;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+.reservationCell {
+    padding-left: 5px;
+}
+
+table.body {
+    width: 100%;
+    table-layout: fixed;
+    border: 1px solid #cccccc;
+}
+
+.centered {
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
 th {
-    width: 26%;
-    padding: 10px 2%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.monthCell {
+    text-align: center;
+    width: 10px;
+    padding: 0;
+    margin: 0;
+    /* border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc; */
+    /* border-bottom: none; */
+}
+
+.timeCellNonborder {
+    text-align: center;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    border: none
+}
+
+.timeCell {
+    text-align: center;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #cccccc;
+}
+
+.dateCell {
+    text-align: center;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #cccccc;
+}
+
+.dateCellNonborder {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
 }
 
 td {
-    width: 66%;
-    padding: 10px 2%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 button {
@@ -90,23 +166,6 @@ button {
     background-color: #f8d7da;
 }
 
-table#employee_list th {
-    width: 30%;
-    padding: 10px 2%;
-}
-
-table#employee_list td {
-    width: 29%;
-    padding: 10px 2%;
-}
-
-tr.row1 {
-        background-color: #f2f2f2;
-}
-tr.row0 {
-        background-color: #ffffff;
-}
-
 select {
     height: 30px;
 }
@@ -118,14 +177,6 @@ select {
     display: inline-block;
 }
 
-#employee_name {
-    color: #cccccc;
-    width: 36%;
-    padding-right: 3%;
-    text-align: right;
-    display: inline-block;
-}
-
 #header a {
     color: #eeeeee;
 }
@@ -134,29 +185,9 @@ h1 a {
     color: #eeeeee;
 }
 
-table#report_list th {
-    font-weight: bold;
-    padding: 10px 2%;
-}
-
-table#report_list .report_name {
-    width: 20%;
-    padding: 10px 2%;
-}
-table#report_list .report_date {
-    width: 20%;
-}
-
-table#report_list .report_title {
-    width: 37%;
-}
-
-table#report_list .report_action {
-    width: 13%;
-}
-
 pre {
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
 }
 
 h3 {
