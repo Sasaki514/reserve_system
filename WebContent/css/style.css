@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
-    /* color: #333333; */
+    color: #333333;
     font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
         Arial, sans-serif;
 }
@@ -63,7 +63,8 @@ table.reservation {
 
 .reservationHeader {
     width: 100px;
-    background-color: dcdcdc;
+    font-weight: bold;
+    background-color: #ffe4c4;
     text-align: center;
     border: 1px solid #cccccc;
 }
@@ -140,6 +141,19 @@ td {
 button {
     font-size: 14px;
     padding: 5px 10px;
+}
+
+.pointerCursor{
+    cursor: pointer;
+}
+
+.buttonSize{
+    width: 150px;
+    height: 50px;
+}
+
+.centerButton{
+    text-align: center;
 }
 
 #footer {

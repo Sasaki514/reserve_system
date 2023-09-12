@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ReserveConfirmationServlet
@@ -62,8 +63,9 @@ public class ReserveConfirmationServlet extends HttpServlet {
             extractedHour = m.group(1); // グループ1の部分（時間）を抽出
         }
 
-        int beginTime = Integer.parseInt(extractedHour);
-        int endTime = beginTime + 1;
+        int timeRequired = 1; //所要時間
+        int beginTime = Integer.parseInt(extractedHour); //開始時刻
+        int endTime = beginTime + timeRequired; //終了時刻
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
         LocalTime localTime_b = LocalTime.of(beginTime, 0);
         String formattedTime_b = localTime_b.format(formatter);
@@ -78,6 +80,17 @@ public class ReserveConfirmationServlet extends HttpServlet {
         request.setAttribute("date", date);
         request.setAttribute("dow", dayOfWeek);
         request.setAttribute("time", timeList);
+        request.setAttribute("timeRequired", timeRequired);
+
+        //セッションに値を設定
+        HttpSession session = request.getSession();
+
+        session.setAttribute("year", year);
+        session.setAttribute("month", month);
+        session.setAttribute("date", date);
+        session.setAttribute("dow", dayOfWeek);
+        session.setAttribute("time", timeList);
+        session.setAttribute("timeRequired", timeRequired);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reserve/confirmaiton.jsp");
         rd.forward(request, response);
