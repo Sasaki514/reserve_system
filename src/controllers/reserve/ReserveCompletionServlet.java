@@ -43,6 +43,14 @@ public class ReserveCompletionServlet extends HttpServlet {
         request.setAttribute("time", session.getAttribute("time"));
         request.setAttribute("timeRequired", session.getAttribute("timeRequired"));
 
+        //セッション情報の削除
+        session.removeAttribute("year");
+        session.removeAttribute("month");
+        session.removeAttribute("date");
+        session.removeAttribute("dow");
+        session.removeAttribute("time");
+        session.removeAttribute("timeRequired");
+
         //画面遷移
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reserve/completion.jsp");
         rd.forward(request, response);

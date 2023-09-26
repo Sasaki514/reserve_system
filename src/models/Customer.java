@@ -11,34 +11,22 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "employees")
+@Table(name = "customer")
 @NamedQueries({
-    @NamedQuery(
-        name = "getAllEmployees",
-        query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
-    ),
-    @NamedQuery(
-        name = "getEmployeesCount",
-        query = "SELECT COUNT(e) FROM Employee AS e"
-    ),
-    @NamedQuery(
-        name = "checkRegisteredCode",
-        query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
-    ),
-    @NamedQuery(
-        name = "checkLoginCodeAndPassword",
-        query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
-    )
+        @NamedQuery(name = "getAllCustomers", query = "SELECT c FROM Customer AS c ORDER BY c.id DESC"),
+        @NamedQuery(name = "getCustomersCount", query = "SELECT COUNT(c) FROM Customer AS c"),
+        @NamedQuery(name = "checkRegisteredMemberId", query = "SELECT COUNT(c) FROM Customer AS c WHERE c.member_id = :member_id"),
+        @NamedQuery(name = "checkLoginIdAndPassword", query = "SELECT c FROM Customer AS c WHERE c.delete_flag = 0 AND c.member_id = :member_id AND c.password = :pass")
 })
 @Entity
-public class Employee {
+public class Customer {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "code", nullable = false, unique = true)
-    private String code;
+    @Column(name = "member_id", nullable = false, unique = true)
+    private String member_id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -48,6 +36,14 @@ public class Employee {
 
     @Column(name = "admin_flag", nullable = false)
     private Integer admin_flag;
+
+    public Integer getAdmin_flag() {
+        return admin_flag;
+    }
+
+    public void setAdmin_flag(Integer admin_flag) {
+        this.admin_flag = admin_flag;
+    }
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -66,12 +62,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getMember_id() {
+        return member_id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
     }
 
     public String getName() {
@@ -88,14 +84,6 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getAdmin_flag() {
-        return admin_flag;
-    }
-
-    public void setAdmin_flag(Integer admin_flag) {
-        this.admin_flag = admin_flag;
     }
 
     public Timestamp getCreated_at() {
@@ -121,6 +109,5 @@ public class Employee {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
-
 
 }
