@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <head>
@@ -8,7 +9,11 @@
 <title>予約完了</title>
         </head>
         <body>
-            <h2>予約が完了しました</h2>
+            <c:if test="${flush != null}">
+                <div id="flush_success">
+                    <c:out value="${flush}"></c:out>
+                </div>
+            </c:if>
             <h3>【予約内容】</h3>
             <table class="border reservation">
                 <tr>

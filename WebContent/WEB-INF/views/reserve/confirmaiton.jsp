@@ -23,6 +23,7 @@
                 </table>
                 <br>
                 <div class="centerButton">
+                <input type="hidden" name="_token" value="${_token}" />
                     <button type="submit" name="confirm" value="予約を確定する"
                         class="pointerCursor buttonSize">予約を確定する</button>
                 </div>

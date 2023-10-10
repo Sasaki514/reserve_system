@@ -7,6 +7,11 @@
         <title>トップページ</title>
         </head>
         <body>
+            <c:if test="${flush != null}">
+                <div id="flush_success">
+                    <c:out value="${flush}"></c:out>
+                </div>
+            </c:if>
             ・
             <a href="<c:url value="/reserve/index" />">予約システム</a>
 

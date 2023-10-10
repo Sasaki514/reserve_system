@@ -7,14 +7,14 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>会員　一覧</h2>
+        <h2>会員一覧</h2>
         <table id="customer_list">
             <tbody>
                 <tr>
                     <th>ID</th>
                     <th>氏名</th>
                     <th>操作</th>
-                    <th>職位</th>
+                    <th>会員ステータス</th>
                 </tr>
                 <c:forEach var="customer" items="${customers}" varStatus="status">
                     <tr class="row${status.count % 2}">
@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <c:if test="${customer.admin_flag == 0}">
-                                一般社員
+                                一般会員
                             </c:if>
                             <c:if test="${customer.admin_flag == 1}">
                                 管理者
@@ -44,8 +44,8 @@
         </table>
 
         <div id="pagination">
-            （全 ${customer_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((customer_count - 1) / 15) + 1}" step="1">
+            （全 ${customers_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((customers_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -56,7 +56,7 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/customer/new' />">新規会員の登録</a></p>
+
 
     </c:param>
 </c:import>

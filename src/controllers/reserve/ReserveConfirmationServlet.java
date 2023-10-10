@@ -81,6 +81,7 @@ public class ReserveConfirmationServlet extends HttpServlet {
         request.setAttribute("dow", dayOfWeek);
         request.setAttribute("time", timeList);
         request.setAttribute("timeRequired", timeRequired);
+        request.setAttribute("_token", request.getSession().getId());
 
         //セッションに値を設定
         HttpSession session = request.getSession();

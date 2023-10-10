@@ -3,6 +3,7 @@
     <persistence-unit name="reserve_system" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>models.Customer</class>
+        <class>models.Reserve</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>

@@ -40,10 +40,10 @@
                         <th>
                             <table class="body">
                                 <tbody>
-                                    <c:forEach var="time" items="${timeList}">
+                                    <c:forEach var="time" varStatus="t" items="${timeList}">
                                         <tr>
                                             <td class="centered">
-                                            <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">空き</a>
+                                            <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">${Mark[widthOfTime * d.index + t.index]}</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

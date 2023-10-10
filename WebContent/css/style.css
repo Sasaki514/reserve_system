@@ -183,11 +183,13 @@ button {
 table#customer_list th {
     width: 30%;
     padding: 10px 2%;
+    border: 1px solid #cccccc;
 }
 
 table#customer_list td {
     width: 29%;
     padding: 10px 2%;
+    border: 1px solid #cccccc;
 }
 
 select {
@@ -207,6 +209,13 @@ select {
     padding-right: 3%;
     text-align: right;
     display: inline-block;
+}
+
+tr.row1 {
+        background-color: #f2f2f2;
+}
+tr.row0 {
+        background-color: #ffffff;
 }
 
 #header a {
