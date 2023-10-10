@@ -122,8 +122,8 @@ public class ReserveIndexServlet extends HttpServlet {
         //予約マークの格納
         int widthOfTime = endTime - beginTime + 1;
         int columnSize = NumofDays;
-        String[][] reserveMark = new String[widthOfTime][columnSize];
-        List<String> Mark = new ArrayList<String>();
+        Integer[][] reserveMark = new Integer[widthOfTime][columnSize];
+        List<Integer> Mark = new ArrayList<Integer>();
 
         //既予約日を取得
         EntityManager em = DBUtil.createEntityManager();
@@ -161,10 +161,10 @@ public class ReserveIndexServlet extends HttpServlet {
                             reservedMonth.get(m).equals(monthListAll.get(i)) &&
                             reservedDate.get(m).equals(dateList.get(i)) &&
                             reservedTime.get(m).equals(defaultTimeList.get(j))) {
-                        reserveMark[j][i] = "☓";
+                        reserveMark[j][i] = 1;
                         break point;
                     } else {
-                        reserveMark[j][i] = "◎";
+                        reserveMark[j][i] = 0;
                     }
                 }
             }

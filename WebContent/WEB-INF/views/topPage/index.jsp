@@ -13,7 +13,10 @@
                 </div>
             </c:if>
             ・
-            <a href="<c:url value="/reserve/index" />">予約システム</a>
+            <a href="<c:url value="/reserve/index" />">予約する</a>
+            <br>
+            ・
+            <a href="<c:url value="/reserve/myConfirmation" />">予約確認</a>
 
         </body>
     </c:param>

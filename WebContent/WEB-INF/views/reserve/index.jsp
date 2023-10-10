@@ -9,10 +9,12 @@
             <thead>
                 <tr>
                     <td class="monthCell"></td>
-                        <th class="dateCellNonborder" colspan="${firstColspan}" style="width:${firstPx}px;">${yearList[0]}年${monthList[0]}月</th>
-                        <c:if test="${secondColspan > 0}">
-                        <th class="dateCellNonborder" colspan="${secondColspan}" style="width:${secondPx}px;">${yearList[1]}年${monthList[1]}月</th>
-                        </c:if>
+                    <th class="dateCellNonborder" colspan="${firstColspan}"
+                        style="width:${firstPx}px;">${yearList[0]}年${monthList[0]}月</th>
+                    <c:if test="${secondColspan > 0}">
+                        <th class="dateCellNonborder" colspan="${secondColspan}"
+                            style="width:${secondPx}px;">${yearList[1]}年${monthList[1]}月</th>
+                    </c:if>
                 </tr>
                 <tr>
                     <td class="timeCellNonborder"></td>
@@ -43,7 +45,12 @@
                                     <c:forEach var="time" varStatus="t" items="${timeList}">
                                         <tr>
                                             <td class="centered">
-                                            <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">${Mark[widthOfTime * d.index + t.index]}</a>
+                                            <c:choose>
+                                                    <c:when test="${Mark[widthOfTime * d.index + t.index] == 0}">
+                                                        <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">◎</a>
+                                                    </c:when>
+                                                    <c:otherwise>☓</c:otherwise>
+                                            </c:choose>
                                             </td>
                                         </tr>
                                     </c:forEach>
