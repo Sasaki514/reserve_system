@@ -67,7 +67,6 @@ public class ReserveCompletionServlet extends HttpServlet {
         LocalDateTime localDateTime = LocalDateTime.of(year, month, date, hour, 0);
 
         Timestamp reserved_at = Timestamp.valueOf(localDateTime);
-        //String reserved_at = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         //リクエスト属性に値を設定
         request.setAttribute("year", request.getAttribute("year"));
