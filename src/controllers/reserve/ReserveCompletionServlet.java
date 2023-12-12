@@ -3,9 +3,6 @@ package controllers.reserve;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -49,12 +46,11 @@ public class ReserveCompletionServlet extends HttpServlet {
         int year = (int) session.getAttribute("year");
         int month = (int) session.getAttribute("month");
         int date = (int) session.getAttribute("date");
-        List<String> timeList = (List<String>) session.getAttribute("time");
-        String time = timeList.get(0);
-        //String dow = (String) session.getAttribute("dow");
+        int time = (int) session.getAttribute("time");
         int timeRequired = (int) session.getAttribute("timeRequired");
+        int time_end = time + timeRequired;
 
-        //時刻の◯時の部分を抽出
+        /*//時刻の◯時の部分を抽出
         Pattern pattern = Pattern.compile("(\\d+):(\\d+)");
         Matcher matcher = pattern.matcher(time);
         int hour = 0;
@@ -62,9 +58,9 @@ public class ReserveCompletionServlet extends HttpServlet {
         if (matcher.find()) {
             String hourPart = matcher.group(1);
             hour = Integer.parseInt(hourPart);
-        }
+        }*/
 
-        LocalDateTime localDateTime = LocalDateTime.of(year, month, date, hour, 0);
+        LocalDateTime localDateTime = LocalDateTime.of(year, month, date, time, 0);
 
         Timestamp reserved_at = Timestamp.valueOf(localDateTime);
 
@@ -74,6 +70,7 @@ public class ReserveCompletionServlet extends HttpServlet {
         request.setAttribute("date", request.getAttribute("date"));
         request.setAttribute("dow", request.getAttribute("dow"));
         request.setAttribute("time", request.getAttribute("time"));
+        request.setAttribute("time_end", time_end);
         request.setAttribute("timeRequired", request.getAttribute("timeRequired"));
         request.setAttribute("_token", request.getSession().getId());
 

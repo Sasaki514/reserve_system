@@ -3,7 +3,6 @@ package controllers.reserve;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -110,15 +109,12 @@ public class ReserveMyConfirmationServlet extends HttpServlet {
 
         //1時間刻みで時刻を取得
         //現状9～20時
-        List<String> timeList = new ArrayList<String>();
+        List<Integer> timeList = new ArrayList<Integer>();
         int beginTime = 9;
         int endTime = 20;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 
         for (int hour = beginTime; hour <= endTime; hour++) {
-            LocalTime localTime = LocalTime.of(hour, 0);
-            String formattedTime = localTime.format(formatter);
-            timeList.add(formattedTime);
+            timeList.add(hour);
         }
 
         request.setAttribute("timeList", timeList);
@@ -146,20 +142,31 @@ public class ReserveMyConfirmationServlet extends HttpServlet {
                 .map(dateTime -> dateTime.format(DateTimeFormatter.ofPattern("yyyy")))
                 .collect(Collectors.toList());
 
+        for(String s:reservedYear){
+            System.out.print(s);
+        }
+        System.out.println();
+
         List<String> reservedMonth = allReserveLocalDateTimes.stream()
                 .map(dateTime -> String.valueOf(dateTime.getMonthValue()))
                 .collect(Collectors.toList());
+
+        for(String s:reservedMonth){
+            System.out.print(s);
+        }
+        System.out.println();
 
         List<String> reservedDate = allReserveLocalDateTimes.stream()
                 .map(dateTime -> String.valueOf(dateTime.getDayOfMonth()))
                 .collect(Collectors.toList());
 
-        List<String> reservedTime = allReserveLocalDateTimes.stream()
-                .map(dateTime -> String.valueOf(dateTime.getHour()))
-                .collect(Collectors.toList());
+        for(String s:reservedDate){
+            System.out.print(s);
+        }
+        System.out.println();
 
-        List<String> defaultTimeList = timeList.stream()
-                .map(time -> time.replaceAll("^([0-9]+):.*", "$1"))
+        List<Integer> reservedTime = allReserveLocalDateTimes.stream()
+                .map(dateTime -> dateTime.getHour())
                 .collect(Collectors.toList());
 
         for (int i = 0; i < dateList.size(); i++) {
@@ -168,7 +175,7 @@ public class ReserveMyConfirmationServlet extends HttpServlet {
                     if (reservedYear.get(m).equals(yearListAll.get(i)) &&
                             reservedMonth.get(m).equals(monthListAll.get(i)) &&
                             reservedDate.get(m).equals(dateList.get(i)) &&
-                            reservedTime.get(m).equals(defaultTimeList.get(j))) {
+                            reservedTime.get(m).equals(timeList.get(j))) {
                         reserveMark[j][i] = 1;
                         break point;
                     } else {
@@ -188,7 +195,7 @@ public class ReserveMyConfirmationServlet extends HttpServlet {
         request.setAttribute("widthOfTime", widthOfTime);
 
         //画面遷移
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reserve/show.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reserve/myConfirmation.jsp");
         rd.forward(request, response);
 
     }

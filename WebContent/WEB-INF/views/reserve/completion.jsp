@@ -19,7 +19,7 @@
                 <tr>
                     <td class="reservationHeader">予約時刻</td>
                     <td class="border reservationCell">${year}年${month}月${date}日${dow}
-                        ${time[0]}～${time[1]}</td>
+                        ${time}:00～${time_end}:00</td>
                 </tr>
                 <tr>
                     <td class="reservationHeader">所要時間</td>

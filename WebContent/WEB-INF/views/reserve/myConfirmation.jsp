@@ -32,7 +32,7 @@
                             <tbody>
                                 <c:forEach var="time" items="${timeList}">
                                     <tr>
-                                        <th class="timeCell">${time}</th>
+                                        <th class="timeCell">${time}:00</th>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -46,7 +46,9 @@
                                         <tr>
                                             <td class="centered">
                                             <c:choose>
-                                                    <c:when test="${Mark[widthOfTime * d.index + t.index] == 0}">-</c:when>
+                                                    <c:when test="${Mark[widthOfTime * d.index + t.index] == 0}">
+                                                        -
+                                                    </c:when>
                                                     <c:otherwise>
                                                     <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">◯</a>
                                                     </c:otherwise>
