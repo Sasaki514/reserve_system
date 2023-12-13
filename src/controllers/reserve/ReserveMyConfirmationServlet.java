@@ -142,28 +142,13 @@ public class ReserveMyConfirmationServlet extends HttpServlet {
                 .map(dateTime -> dateTime.format(DateTimeFormatter.ofPattern("yyyy")))
                 .collect(Collectors.toList());
 
-        for(String s:reservedYear){
-            System.out.print(s);
-        }
-        System.out.println();
-
         List<String> reservedMonth = allReserveLocalDateTimes.stream()
                 .map(dateTime -> String.valueOf(dateTime.getMonthValue()))
                 .collect(Collectors.toList());
 
-        for(String s:reservedMonth){
-            System.out.print(s);
-        }
-        System.out.println();
-
         List<String> reservedDate = allReserveLocalDateTimes.stream()
                 .map(dateTime -> String.valueOf(dateTime.getDayOfMonth()))
                 .collect(Collectors.toList());
-
-        for(String s:reservedDate){
-            System.out.print(s);
-        }
-        System.out.println();
 
         List<Integer> reservedTime = allReserveLocalDateTimes.stream()
                 .map(dateTime -> dateTime.getHour())

@@ -50,7 +50,7 @@
                                                         -
                                                     </c:when>
                                                     <c:otherwise>
-                                                    <a href="<c:url value="/reserve/confirmation?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">◯</a>
+                                                    <a href="<c:url value="/reserve/cancel?year=${yearListAll[d.index]}&month=${monthListAll[d.index]}&date=${date}&time=${time}" />">◯</a>
                                                     </c:otherwise>
                                             </c:choose>
                                             </td>

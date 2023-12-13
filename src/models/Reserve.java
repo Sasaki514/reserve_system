@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Table(name = "reserve")
 @NamedQueries({
         @NamedQuery(name = "getUserReservation", query = "SELECT r FROM Reserve AS r WHERE r.member_id = :member_id ORDER BY r.reserved_at ASC"),
-        @NamedQuery(name = "getAllReservations", query = "SELECT r FROM Reserve AS r ORDER BY r.reserved_at ASC")
+        @NamedQuery(name = "getAllReservations", query = "SELECT r FROM Reserve AS r ORDER BY r.reserved_at ASC"),
+        @NamedQuery(name = "getSingleReservation", query = "SELECT r FROM Reserve AS r WHERE r.member_id = :member_id AND r.reserved_at = :reserved_at")
 })
 
 @Entity
