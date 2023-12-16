@@ -36,34 +36,42 @@ public class LoginFilter implements Filter {
     /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String context_path = ((HttpServletRequest)request).getContextPath();
-        String servlet_path = ((HttpServletRequest)request).getServletPath();
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        String context_path = ((HttpServletRequest) request).getContextPath();
+        String servlet_path = ((HttpServletRequest) request).getServletPath();
+        String requestURI = context_path + servlet_path;
 
-        if(!servlet_path.matches("/css.*")) {       // CSSフォルダ内は認証処理から除外する
-            HttpSession session = ((HttpServletRequest)request).getSession();
+        if (!servlet_path.matches("/css.*")) { // CSSフォルダ内は認証処理から除外する
+            HttpSession session = ((HttpServletRequest) request).getSession();
 
             // セッションスコープに保存された従業員（ログインユーザ）情報を取得
-            Customer c = (Customer)session.getAttribute("login_customer");
+            Customer c = (Customer) session.getAttribute("login_customer");
 
-            if(!servlet_path.equals("/login")) {        // ログイン画面以外について
+            if (!servlet_path.equals("/login")) { // ログイン画面以外について
+                //会員の新規登録画面への推移はフィルタの適用外
+                if (requestURI.equals(context_path + "/customer/new")) {
+                    chain.doFilter(request, response);
+                    return;
+                }
+
                 // ログアウトしている状態であれば
                 // ログイン画面にリダイレクト
-                if(c == null) {
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/login");
+                if (c == null) {
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/login");
                     return;
                 }
 
                 // 従業員管理の機能は管理者のみが閲覧できるようにする
-                if(servlet_path.matches("/customer.*") && c.getAdmin_flag() == 0) {
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                if (servlet_path.matches("/customer.*") && c.getAdmin_flag() == 0) {
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/");
                     return;
                 }
-            } else {                                    // ログイン画面について
+            } else { // ログイン画面について
                 // ログインしているのにログイン画面を表示させようとした場合は
                 // システムのトップページにリダイレクト
-                if(c != null) {
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                if (c != null) {
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/");
                     return;
                 }
             }
